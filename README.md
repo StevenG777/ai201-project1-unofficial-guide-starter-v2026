@@ -27,10 +27,12 @@
 
      Milestone 5. -->
 
+This is a retrieval-augmented Q&A system built on the `campus_life` corpus — 88 short posts, each about one course, dorm, dining hall, or admin policy at a fictional university. It answers specific, factual questions a student would actually have: what step comes first in the grade appeal process, when you're allowed to declare a major, what a specific course's workload or assessment looks like, or what a specific dorm's laundry costs. It retrieves the most relevant post(s) for a question, refuses to answer when nothing in the corpus is close enough to be trustworthy, and otherwise answers using only what's in the retrieved posts, naming the source file it used.
+
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size:** One file = one chunk (whole-file chunking, not a fixed character count)
+**Overlap:** 0
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
@@ -41,6 +43,12 @@
      more than pretending you got it right first time.
 
      Milestone 3. -->
+Every file in campus_life is a short post about exactly one topic --> a single course, dorm, dining hall, or admin policy. I confirmed this by reading all 88 files in Milestone 1/3, not just assuming it. Because each file is already a self-contained thought, a fixed-size character window would risk cutting a sentence in half for no benefit.
+
+So chunk_size/overlap don't apply here in the traditional sense: the natural unit is the file itself, and one file becomes exactly one chunk.
+
+One known limitation: health_center.txt mixes urgent-care hours with a separate paragraph about counselling (two topics in one file). I left it as a single chunk anyway, since it's the only file in the corpus like this, and noted it here as a limitation rather than writing a special case just for one file.
+
 
 ## Sample Chunks
 
@@ -53,85 +61,58 @@
 
      Milestone 3. -->
 
-**Chunk 1** — source: `thread_bike_commute.txt#0` — produced by: `chunker.py::fallback_split`
+**Chunk 1** — source: `admin_add_drop_deadline.txt#0` — produced by: `produced by: chunker.py::split_documents`
 
 ```
-THREAD: Is a bike worth it for a 20 minute walk commute?
+On the add/drop deadline
 
---- reply 1 (14 votes) ---
-Yeah. Cuts an 18 minute walk to about 6. The thing nobody mentions is storage — covered bike parking exists at three buildings and is full by 9am at all three.
-
---- reply 2 (9 votes) ---
-Counterpoint, I sold mine. Between November and March the paths are either icy or salted and salt destroys a drivetrain in one season.
-
---- reply 3 (22 votes) ---
-Both true. I keep a cheap bike for September to November and walk the rest of the year. Total cost was about $120 for the bike and I don't care what happens to it.
-
---- reply 4 (5 votes) ---
-If you do get one, the campus does free registration and it's the only reason I got mine back after it was taken.
-
-For each one, ask: could someone answer a question using only this,
-without reading what came before or after?
+You can add a course through the end of the second week. Dropping is a longer window — through the end of week six — but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.
 ```
 
-**Chunk 2** — source: `thread_first_gen.txt#0` — produced by: `chunker.py::fallback_split`
+**Chunk 2** — source: `course_biol_160.txt#0` — produced by: `chunker.py::split_documents`
 
 ```
-THREAD: Anything specific for first-generation students?
+BIOL 160 Cell Biology
 
---- reply 1 (33 votes) ---
-The advising office has a specific programme and it is genuinely good, but it is opt-in and badly publicised. Ask for it by name.
+I lived here my sophomore year. Format is lecture three times a week with a weekly lab. Assessment: four unit tests and a cumulative final. Not curved.
 
---- reply 2 (41 votes) ---
-The thing I'd say: the unwritten rules are the hard part, not the coursework. Ask about the unwritten rules explicitly. People are happy to explain them and nobody volunteers them.
+Expect 9 to 11 hours a week, the heaviest first-year course by reputation.
 
---- reply 3 (16 votes) ---
-Emergency fund for textbooks and travel exists and is not means-tested beyond a short form.
+The one piece of advice: the unit tests come fast, roughly every three weeks; falling behind once is very hard to recover from.
 ```
 
-**Chunk 3** — source: `thread_laptop_specs.txt#0` — produced by: `chunker.py::fallback_split`
+**Chunk 3** — source: `course_hist_118_workload.txt#0` — produced by: `chunker.py::split_documents`
 
 ```
-THREAD: How much laptop do I actually need for CS courses?
+Workload for HIST 118 Modern World History
 
---- reply 1 (31 votes) ---
-Less than the recommended spec page says. 16GB of RAM is the one number worth paying for; everything else you'll never notice.
+People keep asking so: a lot of reading, about 120 pages a week, but no problem sets. That's real time, not optimistic time.
 
---- reply 2 (18 votes) ---
-Adding: the lab machines exist and are better than anything you'll buy. For the heavy assignments people just use those.
-
---- reply 3 (12 votes) ---
-I did two years on an 8GB machine and it was fine until the last project, at which point it very much wasn't. 16 is the answer.
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
 ```
 
-**Chunk 4** — source: `thread_office_hours_etiquette.txt#0` — produced by: `chunker.py::fallback_split`
+**Chunk 4** — source: `dining_pellew_dining_hall_followup.txt#0` — produced by: `chunker.py::split_documents`
 
 ```
-THREAD: Is it weird to go to office hours with no specific question?
+Re: Pellew Dining Hall
 
---- reply 1 (44 votes) ---
-No, and this is the single most common thing first years get wrong. 'I'm following the lectures but I don't feel like I understand the shape of it' is a completely normal thing to say.
+Adding to what people have said about Pellew Dining Hall. The wait figure of 12 to 18 minutes at peak matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
 
---- reply 2 (29 votes) ---
-They're usually empty. You are doing the instructor a favour by turning up.
-
---- reply 3 (18 votes) ---
-If it helps, treat it as a standing appointment. Go every week for a month and it stops feeling like a thing.
+Also worth saying: the furthest hall from anywhere, next to the athletics centre. Nobody tells you this at orientation.
 ```
 
-**Chunk 5** — source: `thread_roommate_conflict.txt#0` — produced by: `chunker.py::fallback_split`
+**Chunk 5** — source: `housing_innisfree_hall.txt#0` — produced by: `chunker.py::split_documents`
 
 ```
- THREAD: Roommate situation isn't working. What now?
+Innisfree Hall — what it's actually like
 
---- reply 1 (28 votes) ---
-Talk to your RA early, and frame it as 'we need help sorting this out' rather than 'move me'. Room changes are possible but the process starts with mediation and skipping that step slows it down.
+Transferred in last year, so take this with a grain of salt. Built 1991, renovated 2022. Rooms are doubles arranged as pairs sharing one bathroom between two rooms.
 
---- reply 2 (14 votes) ---
-Room changes happen at the semester boundary almost always, and mid-semester only in fairly serious cases.
+The good: the shared-bathroom-between-two-rooms arrangement is the best compromise on campus.
 
---- reply 3 (33 votes) ---
-Write down specifics before the meeting. 'It's not working' is hard to act on; 'guests four nights a week past 2am' is not.
+The bad: no air conditioning, which matters for the first three weeks of September.
+
+Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building is L-shaped and the short wing is much quieter.
 
 For each one, ask: could someone answer a question using only this,
 without reading what came before or after?
@@ -142,14 +123,17 @@ without reading what came before or after?
 <!-- One complete question and answer, pasted as text, with the source line
      visible. Milestone 4. -->
 
-**Question:**
+**Question:** What is the first step in the grade appeal process
 
 **Answer:**
 
 ```
+The grade appeal starts with the instructor and must be raised within fifteen days of the grade posting (admin_grade_appeals.txt).
+
+Sources retrieved: admin_grade_appeals.txt, course_engl_205.txt, course_engl_205_exams.txt, course_stat_150.txt, course_stat_150_exams.txt
 ```
 
-**My relevance cutoff:**
+**My relevance cutoff:** 0.55, top-k = 5
 
 <!-- The number you set in config.py, and how you got there.
 
@@ -160,9 +144,27 @@ without reading what came before or after?
 
      Milestone 4. -->
 
+I ran all five of my test questions and all five OUT_OF_SCOPE questions through `app.py retrieve` and recorded the best (lowest) distance for each. The two groups came out cleanly separated, with no overlap:
+
+- **In-corpus questions:** best distances of 0.228–0.280
+- **Out-of-scope questions:** best distances of 0.825–0.934
+
+That's a gap from about 0.28 to 0.82 — much wider than I expected. The starter's default of 0.6 already sits inside that gap and would work fine, but it's closer to the out-of-scope side than I'd like. I considered 0.3 at first, since it's just above my tightest in-corpus match (0.228), but that hugs the in-corpus edge too closely — a slightly awkward phrasing of a real, answerable question could easily land at 0.3–0.35 and get wrongly refused. Given the size of the actual gap, there was no reason to run that risk.
+
+I decided to set my cutoff to **0.55**, which sits roughly in the middle: comfortably above every in-corpus best distance I measured (leaving room for a real question phrased more loosely than my five test questions) and comfortably below every out-of-scope distance.  
+
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| What is the first step in the grade appeal process | Yes | 0.280 |
+| When is the deadline to appeal your grade after grades are posted | Yes | 0.228 |
+| What happen if you skip the instructor when appealing the grade | Yes | 0.252 |
+| What is the last step in the grade appeal process | Yes | 0.270 |
+| When is the earliest time you can declare your major | Yes | 0.242 |
+| What is the capital of Mongolia? | No | 0.825 |
+| How do I change the oil in a diesel engine? | No | 0.934 |
+| Who won the 1994 World Cup? | No | 0.886 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.844 |
+| How do I write a for loop in Rust? | No | 0.896 |
 
 ## How I Used AI
 
@@ -175,9 +177,9 @@ without reading what came before or after?
 
      Milestone 5. -->
 
-**1.**
+**1.** I used ChatGPT to help design criteria 4 and 5. I started by asking what the actual point of writing a criterion is — it explained that a good criterion should target something the system might plausibly fail, so you can use it to drive a real improvement, not something it trivially passes. From there we talked through common chunking/overlap failure modes. My first instinct was purely mechanical fixed-size chunking, but ChatGPT gave me a counterexample showing a mechanically-cut chunk can fail to contain a semantically complete answer even if it contains the right characters — which meant I needed a semantic boundary, not just a character count. To define that boundary, I had it read through all 88 files in the corpus; it pointed out that each one follows the same shape — a short phrase describing the overall topic, followed by a paragraph on exactly one topic. We used that to define "on-topic" for criterion 4: content counts if a reader would recognize it as related to the current topic (exact wording or a paraphrase both count), as long as any factual claim can actually be pointed to in the source — opinions and judgments don't need that. I changed the wording of the criterion myself several times before settling on the final version with ChatGPT's help polishing it.
 
-**2.**
+**2.** I asked Claude to write the body of `split_documents` in chunker.py, using the chunking/overlap strategy I'd already worked out from the criteria above. It came back with a working implementation, but the if/else structure didn't match the style of `fallback_split` already in the same file, so I rewrote that part myself to keep the two functions visually consistent. I then read through the logic and ran it against a few real files by hand to confirm the chunks it produced actually looked right before accepting it.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never

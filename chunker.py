@@ -96,8 +96,38 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
       - Is the useful information in one sentence, or spread over a paragraph?
       - Would splitting on paragraph breaks keep more thoughts intact than
         splitting on a character count?
+
+    ==============================================================================
+
+    File-level, no-overlap chunking for campus_life.
+
+    Every file in campus_life is a short post about exactly one topic (a
+    single course, dorm, dining hall, or admin policy) — confirmed by reading
+    all 88 files in Milestone 3. Splitting one of those posts into fixed-size
+    windows would cut a sentence in half for no benefit, since there's nothing
+    to gain by separating "attending every class matters" from "midterms are
+    curved" when they're two sentences from the same 400-character file. So
+    one file becomes exactly one chunk, and chunk_size/overlap don't apply.
+
+    Known exception: health_center.txt mixes urgent-care hours with a separate
+    paragraph about counselling — two topics in one file. Left as one chunk
+    anyway, since it's the only file like it in the corpus; noted as a
+    limitation rather than special-cased.
     """
-    return fallback_split(documents)
+    chunks: list[Chunk] = []
+    for doc in documents:
+        piece = doc.text.strip()
+        if piece:
+            chunks.append(
+                Chunk(
+                    text=piece,
+                    source=doc.source,
+                    index=0,
+                    produced_by="chunker.py::split_documents",
+                )
+            )
+
+    return chunks
 
 
 def describe(chunks: list[Chunk]) -> str:
