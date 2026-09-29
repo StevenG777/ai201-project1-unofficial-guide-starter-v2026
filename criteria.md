@@ -77,7 +77,7 @@ I chose all 88 chunks because my chunking strategy assumes that each Campus Life
 
 ---
 
-## For all 5 of my test answers, every factual claim must be traceable to the cited source, meaning a person can point to text in that source that directly supports the claim’s meaning, even if the answer paraphrases it.
+## 5. For all 5 of my test answers, every factual claim must be traceable to the cited source, meaning a person can point to text in that source that directly supports the claim’s meaning, even if the answer paraphrases it.
 <!-- YOU WRITE THIS ONE TOO.
 
      Pick something you actually care about getting right. It could be about
