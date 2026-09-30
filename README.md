@@ -208,15 +208,131 @@ I decided to set my cutoff to **0.55**, which sits roughly in the middle: comfor
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Each chunk represents one coherent file-level topic | 88 of 88| 87/88 | 87/88 | 87/88 | MISS |
+| 5. For all 5 of my test answers, every factual claim must be traceable to the cited source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+### 1. Retrieved chunk contains the answer
+> Produced by `run_eval.py::run_once` (retrieval via `store.py::search`, chunks from
+> `chunker.py::split_documents`), cutoff 0.6, top-k 5, 3 runs per question, caching off.
+> Full per-run output in `results/run_2026-09-28_2223_before.md`.
+
+### 2. Every answer names a source
+> Produced by `run_eval.py::run_once`, same run as above. Full output in
+> `results/run_2026-09-28_2223_before.md`.
+
+### 5. For all 5 of my test answers, every factual claim must be traceable to the cited source
+> Produced by `run_eval.py::run_once`, same run as above. Full output in
+> `results/run_2026-09-28_2223_before.md`.
+
+#### What is the first step in the grade appeal process — run 1
+
+- Best distance: 0.2798 (passed the gate)
+- Sources retrieved: admin_grade_appeals.txt, course_engl_205.txt, course_engl_205_exams.txt, course_stat_150.txt, course_stat_150_exams.txt
+
+```
+The first step in a grade appeal is to start with the instructor, and it must be raised within fifteen days of the grade posting (admin_grade_appeals.txt).
+```
+
+#### When is the deadline to appeal your grade after grades are posted — run 1
+
+- Best distance: 0.2281 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_grade_appeals.txt, admin_pass_fail_option.txt, admin_withdrawal_deadline.txt, course_stat_150.txt
+
+```
+A grade appeal has to be raised within fifteen days of the grade posting. 
+
+Source: admin_grade_appeals.txt
+```
+
+#### What happen if you skip the instructor when appealing the grade — run 1
+
+- Best distance: 0.2521 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_grade_appeals.txt, admin_pass_fail_option.txt, admin_withdrawal_deadline.txt, course_stat_150.txt
+
+```
+If you skip the instructor step, the appeal is returned, which wastes most of the fifteen days allowed to raise the appeal. 
+
+Source: admin_grade_appeals.txt
+```
+
+#### What is the last step in the grade appeal process — run 1
+
+- Best distance: 0.2698 (passed the gate)
+- Sources retrieved: admin_grade_appeals.txt, course_engl_205.txt, course_engl_205_exams.txt, course_stat_150.txt, course_stat_150_exams.txt
+
+```
+Based on the provided documents, a grade appeal starts with the instructor and then goes to the department (admin_grade_appeals.txt). The documents do not mention any further steps beyond going to the department.
+```
+
+#### When is the earliest time you can declare your major — run 1
+
+- Best distance: 0.2422 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_declaring_a_major.txt, admin_graduation_requirements.txt, admin_pass_fail_option.txt, admin_study_abroad.txt
+
+You declare your major at the end of your second semester (from admin_declaring_a_major.txt).
+
+### 3. Gate stops out-of-corpus questions
+> Produced by `run_eval.py::check_out_of_scope`, cutoff 0.6. Refused 5 of 5.
+
+| Out-of-scope question | Best distance | Gate |
+|---|---|---|
+| What is the capital of Mongolia? | 0.825 | refused |
+| How do I change the oil in a diesel engine? | 0.934 | refused |
+| Who won the 1994 World Cup? | 0.886 | refused |
+| What is the recommended dosage of ibuprofen for a headache? | 0.844 | refused |
+| How do I write a for loop in Rust? | 0.896 | refused |
+
+### 4. Each chunk represents one coherent file-level topic
+
+> No code checks this — it's a manual review, judged against the "on-topic" definition from
+> How I Used AI (a reader would recognize it as related to the current topic, and any factual
+> claim can be pointed to in the source). Chunks produced by `chunker.py::split_documents`.
+> Judged 87/88 coherent. Full set reviewed is saved to
+> `results/chunks_all_criterion4.txt` (from `python app.py chunks -n 88`).
+
+**The one failure — `health_center.txt#0`:**
+
+```
+The health centre
+
+Walk-in hours are 8am to 11am; everything after that is by appointment and appointments run about a week out. If something is urgent, go at 8am and wait rather than booking.
+
+Counselling is separate, in the same building, and has its own intake process with a shorter wait than people expect — usually three or four days for a first session.
+```
+
+The second paragraph (counselling) is a separate topic from the first (urgent-care walk-in
+hours) — neither is a detail, exception, or consequence of the other, so this chunk fails the
+criterion's own test.
+
+**Two passing chunks, for contrast:**
+
+`dining_pellew_dining_hall.txt#0`:
+
+```
+Pellew Dining Hall
+
+Second-year here. Wait times: 12 to 18 minutes at peak, and the peak is early — 11:45 to 12:30. The thing worth going for is a dedicated allergen-free station staffed by someone who knows the menu. The thing to know is that the furthest hall from anywhere, next to the athletics centre.
+
+Hours are 7:00am to 8:00pm daily. Costs one meal swipe, or $11.75 cash.
+```
+
+`money_textbooks.txt#0`:
+
+```
+The library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.
+
+The campus store price-matches, which is not advertised anywhere and you have to ask at the counter with the other listing on your phone.
+```
+
+Every sentence in both stays on the file's single named topic (wait times/hours/cost for one
+dining hall; reserve copies/price-matching for textbooks) — no second topic label needed.
 
 ## Verdicts
 
@@ -231,11 +347,11 @@ I decided to set my cutoff to **0.55**, which sits roughly in the middle: comfor
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | MET | Check that the answer is found in the retrieved chunk |
+| 2 | Every answer names a source | MET | Check the text with keyword cited, source; and file name(s) |
+| 3 | Gate stops out-of-corpus questions | MET | Check from the run log that the out-of-corpus questions are refused by the gates. |
+| 4 | Each chunk represents one coherent file-level topic | MISS | Analyze the main topic for each corpus, any other topic that are related to the main topic is considered as part of the main topic. A topic that's semantically different and not related in any way is considered a completely separate main topic, while violate the coherence |
+| 5 | For all 5 of my test answers, every factual claim must be traceable to the cited source | MET | Extract all factual parts of the answer, and ensure all parts match the main topics fully from the answer to the cited source|
 
 ## Diagnoses
 
@@ -257,6 +373,42 @@ I decided to set my cutoff to **0.55**, which sits roughly in the middle: comfor
 
      Milestone 3. -->
 
+### Criterion 4 (chunk coherence) — MISS
+
+**Stage: chunking.**
+
+`chunker.py::split_documents` assumes one file equals one topic and turns every file into a
+single chunk with no internal split logic — there's no check for a topic boundary within a
+file, so whatever a file contains, coherent or not, becomes one chunk verbatim. That
+assumption holds for 87 of 88 files. It breaks for `health_center.txt`, which covers two
+unrelated topics in one file: urgent-care walk-in hours in the first paragraph, and a
+separate counselling intake process (different hours, different wait time, different
+process) in the second. Because `split_documents` never looks for a boundary between them,
+both topics end up in `health_center.txt#0` together, and that single chunk fails the "one
+coherent topic" test the criterion sets.
+
+**Pattern check.** This is the only chunk of 88 that fails, and `health_center.txt` is the
+only file in the corpus that mixes two unrelated topics — every other file was already
+written as a single-topic post. So this is one isolated cause, not a systemic chunking
+problem: the whole-file strategy is sound for the other 87 files, and rewriting the chunker
+to handle "files with two topics" as a general case would be solving a problem that appears
+exactly once in the corpus.
+
+**Were my targets set low?** Four of five criteria came in MET on the first pass, which is
+the pattern the assignment warns about — safe targets that pass tell you less than targets
+that get tested honestly. Criterion 4's target (88/88, zero tolerance) wasn't set with
+`health_center.txt` in mind, though — I set 88/88 because my chunking strategy rests on the
+one-file-equals-one-topic assumption holding across the whole corpus, and I only found the
+exception by actually reviewing all 88 chunks for this unit, not when I wrote the criterion
+last unit. So the target did its job: it was strict enough to catch an assumption I hadn't
+actually verified yet. The target I'd reconsider instead is criterion 3 (gate stops
+out-of-corpus questions, target 4/5) — it came in 5/5 across all three runs with a distance
+gap so wide (0.28 best in-corpus vs. 0.83 worst out-of-scope) that nothing in my current test
+set is close enough to the boundary to meaningfully stress the gate. Next time I'd tighten it
+by adding a harder near-miss question — something adjacent to the corpus but not answerable
+from it — rather than keeping five questions worded as unambiguously off-topic as "capital of
+Mongolia."
+
 ## The Improvement
 
 **What I changed:**
@@ -273,7 +425,7 @@ I decided to set my cutoff to **0.55**, which sits roughly in the middle: comfor
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 | 2. Every answer names a source | 5 of 5 |  |  |  |  |
 | 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
 | 4. | | | | | |
