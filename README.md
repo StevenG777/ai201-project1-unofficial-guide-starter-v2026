@@ -181,6 +181,10 @@ I decided to set my cutoff to **0.55**, which sits roughly in the middle: comfor
 
 **2.** I asked Claude to write the body of `split_documents` in chunker.py, using the chunking/overlap strategy I'd already worked out from the criteria above. It came back with a working implementation, but the if/else structure didn't match the style of `fallback_split` already in the same file, so I rewrote that part myself to keep the two functions visually consistent. I then read through the logic and ran it against a few real files by hand to confirm the chunks it produced actually looked right before accepting it.
 
+**3.** For the criterion 4 diagnosis, I asked Claude to look at chunker.py and figure out the actual mechanism behind the `health_center.txt` miss rather than just restating "it has two topics." It named the stage (chunking) and the specific gap: `split_documents` has no check for a topic boundary inside a file. When I floated fixing it by special-casing the filename, Claude pushed back — pointing out my own chunker.py docstring had already rejected that exact approach, and that it wouldn't generalize to a future file with the same problem. I agreed and asked for a generalizable alternative instead.
+
+**4.** I asked Claude to implement the alternative — paragraph splitting merged back together by embedding similarity — as a new function, `semantic_split_documents`, kept separate from `split_documents` rather than replacing it. Before trusting a threshold, I pushed back that the embedding model is a black box to me and could plausibly treat same-topic paraphrased paragraphs as dissimilar, so I asked it to actually measure this instead of guessing a number. It swept the threshold across the corpus and found none that caught `health_center.txt` without also splitting 50+ genuinely single-topic files (`course_biol_160.txt` among them), and it built a concrete example proving the damage was real — `course_biol_160.txt`'s workload sentence, once separated from its title, drops to rank 27 of 158 chunks for a question it should answer. I used that evidence to reject the improvement myself rather than adopt whatever number made the criterion pass.
+
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
      claims earns nothing.
@@ -442,9 +446,7 @@ guess at the mechanism: sentence embeddings encode surface semantic content, not
 same real-world topic as the previous paragraph, allowing for paraphrase." Two paragraphs
 about the same dorm can use completely different vocabulary (laundry cost vs. noise) and
 embed far apart even though a person would call them the same file's topic, while paragraphs
-that share surface vocabulary can embed close together across an actual topic boundary. I
-can't see which signal the model is keying on, so I can't reason about why a threshold would
-generalize — I can only observe, empirically, that none does here.
+that share surface vocabulary can embed close together across an actual topic boundary.
 
 I ran the full system anyway at threshold 0.35 (the value needed to fix criterion 4) rather
 than abandoning it at the calibration stage, so the after-numbers below are real, not
@@ -498,9 +500,7 @@ But I don't think it's a net improvement, and I'm not adopting it. It fixes one 
 introducing a mechanism that measurably breaks other, unrelated files (`course_biol_160.txt`
 is not an edge case the way `health_center.txt` is — it's an ordinary file that got damaged as
 a side effect). My existing five test questions don't happen to expose that damage because of
-redundant information elsewhere in the corpus, which means the Run Log — After table above
-looks like a clean win while hiding a real regression a differently-worded question would
-have caught. I'm keeping `split_documents` (the "before" chunker) as the system's actual
+redundant information elsewhere in the corpus.  I'm keeping `split_documents` (the "before" chunker) as the system's actual
 chunker and leaving `semantic_split_documents` in the repo as a documented, measured, rejected
 attempt.
 
@@ -521,9 +521,42 @@ attempt.
 
      Milestone 5. -->
 
+**Criterion 4 (chunk coherence, 87/88) — still MISS in the deployed system.** I built and
+measured an improvement (`semantic_split_documents`), but rejected it after showing it
+degrades an unrelated file (`course_biol_160.txt` becomes unretrievable for its own workload
+question) worse than the one file it fixes. The system today still runs `split_documents`, so
+`health_center.txt` remains one chunk mixing urgent-care hours and counselling.
+
+What I'd try next: a narrower, rule-based split for the specific "two topics in one file"
+pattern instead of a generic similarity threshold — detect an explicit topic-shift phrase
+("is separate," "also worth saying") and split there, leaving every other file's chunking
+untouched. I'd validate it the same way I validated the failure: run it against every
+multi-paragraph file in the corpus before trusting it, not just `health_center.txt`. I stopped
+here because Milestone 4's budget was already spent building and honestly evaluating the
+semantic-merge attempt.
+
+Also worth flagging even though it isn't a miss: criterion 3's target (4 of 5) has never been
+meaningfully stress-tested. My five out-of-scope questions sit at distance 0.79–0.93 against a
+0.28 worst in-corpus case — nothing close enough to the 0.6 cutoff to tell me whether the gate
+would actually catch a harder near-miss question. That's a gap in my test set, not evidence
+the gate works well; criterion 3's MET verdict is weaker than the clean 5/5 makes it look.
+
 ## What I'd Do Differently
 
 <!-- Knowing what you know now — which of your five criteria would you write
      differently, and why?
 
      Milestone 5. -->
+
+**Criterion 4.** I'd keep the target at 88/88 — it did its job, catching an assumption
+(one-file-equals-one-topic) I hadn't actually verified when I wrote it. What I'd change is my
+own process, not the criterion: I'd read all 88 files for exceptions *before* setting the
+target, the way I eventually did during this unit's Milestone 1, rather than setting the
+target first and discovering the exception during testing. Same number, entered this unit
+already knowing where my one miss was instead of finding it during the test run.
+
+**Criterion 3.** I'd tighten the out-of-scope question set, not the 4-of-5 target. Five
+questions that are all as unambiguously off-topic as "capital of Mongolia" don't stress the
+gate — I'd add at least one deliberately hard near-miss (plausible-sounding, campus-adjacent,
+but not actually in the corpus) so a MET verdict here means something closer to "the gate
+caught a genuinely hard case" instead of "the gate caught five easy ones."
