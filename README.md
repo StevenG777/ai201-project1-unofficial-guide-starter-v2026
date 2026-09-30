@@ -411,27 +411,98 @@ Mongolia."
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** Added a second chunker, `chunker.py::semantic_split_documents`, kept
+alongside `split_documents` rather than replacing it (selectable with `--chunker` on
+`app.py index`/`chunks`, and `--variant` to hold both indexes at once — `default` is the
+original, `semantic` is this one). It splits each file into paragraphs, embeds each one, and
+merges adjacent paragraphs into one chunk as long as consecutive-paragraph embedding
+similarity stays above `config.CHUNK_SIMILARITY_THRESHOLD`; it starts a new chunk when
+similarity drops below that. The title line is always glued to the first real paragraph
+before any comparison, since a title alone ("The health centre") carries almost no topic
+signal on its own.
 
-**Why I picked it:**
+**Why I picked it:** Directly targets the criterion 4 diagnosis above — `split_documents`
+has no mechanism at all for detecting a topic boundary inside a file, so this adds one.
 
-<!-- Connect it to a specific diagnosis above in one sentence. If you can't,
-     you picked a fix because it sounded impressive. -->
+**Calibration — this is where it broke.** Framing it as: *positive* = correctly split
+(different topic), *negative* = correctly merge (same topic). I embedded paragraph pairs from
+`health_center.txt` (the one real topic-shift case) and from known single-topic multi-paragraph
+files (`course_biol_160.txt`, etc.) and swept the threshold:
+
+| Threshold | Catches `health_center.txt`'s real split? | Files wrongly split (false positives) |
+|---|---|---|
+| 0.15–0.3 | No | 6–41 files |
+| ≥ 0.35 | Yes | 54+ files, including `course_biol_160.txt`, `course_stat_150.txt` |
+
+There is no threshold with both decent recall and acceptable precision — the value needed to
+catch the one real case also fires on dozens of files that are genuinely single-topic.
+Recall and false-positive rate move together here rather than trading off against each other,
+which is what it looks like when a feature isn't actually separating the two classes. My best
+guess at the mechanism: sentence embeddings encode surface semantic content, not "is this the
+same real-world topic as the previous paragraph, allowing for paraphrase." Two paragraphs
+about the same dorm can use completely different vocabulary (laundry cost vs. noise) and
+embed far apart even though a person would call them the same file's topic, while paragraphs
+that share surface vocabulary can embed close together across an actual topic boundary. I
+can't see which signal the model is keying on, so I can't reason about why a threshold would
+generalize — I can only observe, empirically, that none does here.
+
+I ran the full system anyway at threshold 0.35 (the value needed to fix criterion 4) rather
+than abandoning it at the calibration stage, so the after-numbers below are real, not
+projected.
 
 ### Run Log — After
 
-<!-- Same format, same five criteria, three runs each.
-     `python run_eval.py --label after` -->
+Produced by `run_eval.py::main`, index variant `semantic` (158 chunks vs. 88 before). Full
+per-run output: `results/run_2026-09-29_1959_after.md`.
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
 | 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Each chunk represents one coherent file-level topic | 88 of 88 | 88/88 | 88/88 | 88/88 | MET |
+| 5. Every factual claim traceable to the cited source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
-**Did it help?**
+Criterion 4 flips from MISS to MET — `health_center.txt` now splits into
+`health_center.txt#0` (walk-in hours) and `health_center.txt#1` (counselling), each a single
+coherent topic. Criteria 1/2/3/5 stayed MET, unchanged, on my original five test questions.
+
+**But that's misleading, not reassuring — the concrete failure the calibration predicted is
+real, it just doesn't happen to touch my five test questions.** `course_biol_160.txt` splits
+into three chunks under this chunker: `#0` (course format/assessment, keeps the title "BIOL
+160 Cell Biology"), `#1` ("Expect 9 to 11 hours a week, the heaviest first-year course by
+reputation." — no course name anywhere in it), `#2` (advice). I asked "How many hours a week
+should I expect to spend on BIOL 160?" against both indexes:
+
+```
+before (variant=default): distance 0.306, top-5 includes course_biol_160.txt
+  "You should expect to spend 9 to 11 hours a week on BIOL 160
+  (from course_biol_160_workload.txt and course_biol_160.txt)."
+
+after (variant=semantic): course_biol_160.txt#1 — the chunk with the actual answer —
+  ranks 27th of 158 chunks, distance 0.675 (above the 0.6 gate cutoff on its own).
+  It never appears in top-5 or top-20.
+```
+
+The answer still came out right here, purely because a second file
+(`course_biol_160_workload.txt`) happens to state the same fact independently — the corpus
+has redundant coverage for hours-per-week questions specifically. Strip that redundancy and
+this chunker would make the gate refuse a question the corpus can actually answer, or force
+the model to answer from a chunk that no longer says which course it's about. That's the
+concrete version of the false-positive-rate problem above: fragmenting a coherent chunk can
+delete the very context (a course name, a file's title) that made it retrievable in the
+first place.
+
+**Did it help?** For the one thing it targeted — criterion 4 — yes, on paper: 87/88 → 88/88.
+But I don't think it's a net improvement, and I'm not adopting it. It fixes one known file by
+introducing a mechanism that measurably breaks other, unrelated files (`course_biol_160.txt`
+is not an edge case the way `health_center.txt` is — it's an ordinary file that got damaged as
+a side effect). My existing five test questions don't happen to expose that damage because of
+redundant information elsewhere in the corpus, which means the Run Log — After table above
+looks like a clean win while hiding a real regression a differently-worded question would
+have caught. I'm keeping `split_documents` (the "before" chunker) as the system's actual
+chunker and leaving `semantic_split_documents` in the repo as a documented, measured, rejected
+attempt.
 
 <!-- Say plainly whether it did, and how you know. If it made things worse,
      say that — a change that backfired, honestly reported, earns full credit

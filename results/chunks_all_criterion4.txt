@@ -1,0 +1,814 @@
+88 chunks total. Showing 88, spread across the corpus.
+
+Paste these into your README under Sample Chunks. The rubric asks
+for the source file and the function that produced them — both are
+printed for you below.
+
+======================================================================
+Chunk 1  |  source: admin_add_drop_deadline.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the add/drop deadline
+
+You can add a course through the end of the second week. Dropping is a longer window — through the end of week six — but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.
+
+======================================================================
+Chunk 2  |  source: admin_campus_jobs_and_financial_aid.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the campus jobs and financial aid
+
+Work-study earnings don't count against your financial aid the way ordinary income does. Non-work-study campus jobs pay the same and do count, which is a difference worth understanding before you take the first job offered.
+
+======================================================================
+Chunk 3  |  source: admin_declaring_a_major.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the declaring a major
+
+You declare at the end of your second semester, or later if you need to. There's no penalty for declaring late and no advantage to declaring early except that it assigns you a departmental adviser, who is generally more useful than the general one.
+
+======================================================================
+Chunk 4  |  source: admin_dining_dollars.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the dining dollars
+
+Declining balance — what everyone calls dining dollars — rolls over from the autumn semester to the spring, but not from spring to the following autumn. Whatever is left in May disappears.
+
+======================================================================
+Chunk 5  |  source: admin_grade_appeals.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the grade appeals
+
+A grade appeal starts with the instructor and has to be raised within fifteen days of the grade posting. Only after that does it go to the department. Skipping the instructor step gets the appeal returned, which wastes most of the fifteen days.
+
+======================================================================
+Chunk 6  |  source: admin_graduation_requirements.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the graduation requirements
+
+120 credit hours, a completed major, and the general education requirements. The one that trips people is the writing-intensive requirement: two courses, and they must be taken in different departments. Check this in your third year, not your fourth.
+
+======================================================================
+Chunk 7  |  source: admin_housing_lottery.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the housing lottery
+
+The housing lottery is not random in the way most people assume. Rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, and only tie-break randomly. That means a senior who took summer courses reliably beats a senior who didn't. Numbers come out the second week of March and selection runs over four evenings.
+
+======================================================================
+Chunk 8  |  source: admin_library_holds.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the library holds
+
+You can place a hold on a checked-out book and it usually arrives in two to three days. What isn't advertised: the interlibrary system covers eleven other institutions and requests through it take about a week but almost never fail.
+
+======================================================================
+Chunk 9  |  source: admin_meal_plan_changes.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the meal plan changes
+
+You can change your meal plan tier once, in the first ten days of the semester. After that it's locked. Downgrading refunds the difference to your student account; upgrading bills you immediately.
+
+======================================================================
+Chunk 10  |  source: admin_parking_permits.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the parking permits
+
+Student permits for the west lots go on sale in August and sell out in about three days. The east lot never sells out because it's a 12-minute walk. There is no waitlist — people who miss the window park on Verrill Street and walk in, which is legal but unmarked and confuses everyone.
+
+======================================================================
+Chunk 11  |  source: admin_pass_fail_option.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the pass/fail option
+
+Any course outside your major can be taken pass/fail, and — the part nobody mentions — you can declare it as late as week eight, after you've seen your midterm. A pass needs a C- or better. Two per year, maximum eight across a degree.
+
+======================================================================
+Chunk 12  |  source: admin_printing_quota.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the printing quota
+
+Every student gets $30 of printing per semester, which is roughly 600 black-and-white pages. It does not roll over. Colour costs eight times as much per page, which people discover after printing one poster.
+
+======================================================================
+Chunk 13  |  source: admin_study_abroad.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the study abroad
+
+Applications open in October for the following academic year. The financial aid package travels with you, which is the single most misunderstood fact about the programme — most students assume it doesn't and rule themselves out.
+
+======================================================================
+Chunk 14  |  source: admin_transcript_requests.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the transcript requests
+
+Official transcripts cost $8 and take three business days electronically, or ten by post. Unofficial ones are free and instant from the student portal, and are accepted by most employers and by every graduate programme at the application stage.
+
+======================================================================
+Chunk 15  |  source: admin_wifi_and_accounts.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the wifi and accounts
+
+Your student account gives you campus wifi, printing, and a cloud drive with unlimited storage that most people never discover. The account stays active for six months after you graduate, and the cloud drive is purged at that point without a second warning.
+
+======================================================================
+Chunk 16  |  source: admin_withdrawal_deadline.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the withdrawal deadline
+
+Withdrawal is a different thing from dropping and has a different date. Dropping ends at week six. Withdrawal runs to week ten, requires an adviser signature, and puts a W on the transcript that doesn't affect GPA. The two dates appear on different pages of the registrar's site and this catches people every year.
+
+======================================================================
+Chunk 17  |  source: advising_registration.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Registration and your adviser
+
+You need an adviser hold lifted before you can register, and advisers get busy in the week before registration opens. Book two weeks out.
+
+Registration times are staggered by credit hours, same as the housing lottery. Popular courses fill in the first two days.
+
+======================================================================
+Chunk 18  |  source: course_biol_160.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+BIOL 160 Cell Biology
+
+I lived here my sophomore year. Format is lecture three times a week with a weekly lab. Assessment: four unit tests and a cumulative final. Not curved.
+
+Expect 9 to 11 hours a week, the heaviest first-year course by reputation.
+
+The one piece of advice: the unit tests come fast, roughly every three weeks; falling behind once is very hard to recover from.
+
+======================================================================
+Chunk 19  |  source: course_biol_160_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+BIOL 160 Cell Biology — assessment
+
+Four unit tests and a cumulative final. Not curved.
+
+The unit tests come fast, roughly every three weeks; falling behind once is very hard to recover from.
+
+======================================================================
+Chunk 20  |  source: course_biol_160_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for BIOL 160 Cell Biology
+
+People keep asking so: 9 to 11 hours a week, the heaviest first-year course by reputation. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 21  |  source: course_cs_210.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+CS 210 Data Structures
+
+I'm a junior and I've done this twice now. Format is lecture with weekly labs; slides go up after class, not before. Assessment: two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.
+
+Expect 8 to 10 hours a week outside class.
+
+The one piece of advice: do the labs even though they're only 10% — the exams reuse the lab problems.
+
+======================================================================
+Chunk 22  |  source: course_cs_210_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+CS 210 Data Structures — assessment
+
+Two midterms and a final, all drawn from lecture material rather than the textbook. Midterms are curved, the final is not.
+
+Do the labs even though they're only 10% — the exams reuse the lab problems.
+
+======================================================================
+Chunk 23  |  source: course_cs_210_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for CS 210 Data Structures
+
+People keep asking so: 8 to 10 hours a week outside class. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 24  |  source: course_cs_340.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+CS 340 Databases
+
+I'm a junior and I've done this twice now. Format is lecture twice a week plus a project that runs the whole term. Assessment: one midterm and a final, both open-book. Lightly curved, usually two or three points.
+
+Expect 6 hours a week early, 15 in the last three weeks when the project lands.
+
+The one piece of advice: start the term project in week three, not week eight; everyone learns this the hard way.
+
+======================================================================
+Chunk 25  |  source: course_cs_340_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+CS 340 Databases — assessment
+
+One midterm and a final, both open-book. Lightly curved, usually two or three points.
+
+Start the term project in week three, not week eight; everyone learns this the hard way.
+
+======================================================================
+Chunk 26  |  source: course_cs_340_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for CS 340 Databases
+
+People keep asking so: 6 hours a week early, 15 in the last three weeks when the project lands. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 27  |  source: course_econ_101.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+ECON 101 Introduction to Economics
+
+Took this last spring. Format is large lecture, 300 people, with small discussion sections. Assessment: two midterms and a final, all multiple choice. Curved, and generously.
+
+Expect 4 hours a week outside class.
+
+The one piece of advice: the discussion section is where the exam-style questions get worked; attendance isn't taken but it correlates.
+
+======================================================================
+Chunk 28  |  source: course_econ_101_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+ECON 101 Introduction to Economics — assessment
+
+Two midterms and a final, all multiple choice. Curved, and generously.
+
+The discussion section is where the exam-style questions get worked; attendance isn't taken but it correlates.
+
+======================================================================
+Chunk 29  |  source: course_econ_101_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for ECON 101 Introduction to Economics
+
+People keep asking so: 4 hours a week outside class. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 30  |  source: course_engl_205.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+ENGL 205 Writing for the Sciences
+
+Transferred in last year, so take this with a grain of salt. Format is workshop format, you write every week and peers read it. Assessment: no exams; a portfolio of six revised pieces. Not curved.
+
+Expect 4 to 5 hours a week, mostly writing and rewriting.
+
+The one piece of advice: the portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.
+
+======================================================================
+Chunk 31  |  source: course_engl_205_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+ENGL 205 Writing for the Sciences — assessment
+
+No exams; a portfolio of six revised pieces. Not curved.
+
+The portfolio is graded on revision, so keep your drafts — you're marked on the distance travelled.
+
+======================================================================
+Chunk 32  |  source: course_engl_205_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for ENGL 205 Writing for the Sciences
+
+People keep asking so: 4 to 5 hours a week, mostly writing and rewriting. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 33  |  source: course_hist_118.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+HIST 118 Modern World History
+
+Transferred in last year, so take this with a grain of salt. Format is discussion-led seminar, attendance is 15% of the grade. Assessment: no exams; two essays and a final project. Not curved.
+
+Expect a lot of reading, about 120 pages a week, but no problem sets.
+
+The one piece of advice: the essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+======================================================================
+Chunk 34  |  source: course_hist_118_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+HIST 118 Modern World History — assessment
+
+No exams; two essays and a final project. Not curved.
+
+The essay rubric is posted in week 2 and it's followed exactly — read it early.
+
+======================================================================
+Chunk 35  |  source: course_hist_118_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for HIST 118 Modern World History
+
+People keep asking so: a lot of reading, about 120 pages a week, but no problem sets. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 36  |  source: course_math_220.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+MATH 220 Linear Algebra
+
+I lived here my sophomore year. Format is chalk-and-talk lecture, weekly problem sets marked for correctness. Assessment: two midterms and a cumulative final. Curved to a b- median.
+
+Expect 6 to 8 hours a week, almost all of it on problem sets.
+
+The one piece of advice: the problem sets are the course; the lectures make sense afterwards rather than during.
+
+======================================================================
+Chunk 37  |  source: course_math_220_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+MATH 220 Linear Algebra — assessment
+
+Two midterms and a cumulative final. Curved to a b- median.
+
+The problem sets are the course; the lectures make sense afterwards rather than during.
+
+======================================================================
+Chunk 38  |  source: course_math_220_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for MATH 220 Linear Algebra
+
+People keep asking so: 6 to 8 hours a week, almost all of it on problem sets. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 39  |  source: course_phys_130.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+PHYS 130 Mechanics
+
+Just finished a year in this building. Format is lecture with a compulsory lab that meets fortnightly. Assessment: three midterms, no final, plus a lab practical. Not curved, but the lowest midterm is dropped.
+
+Expect 7 hours a week, plus 3 on lab weeks.
+
+The one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.
+
+======================================================================
+Chunk 40  |  source: course_phys_130_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+PHYS 130 Mechanics — assessment
+
+Three midterms, no final, plus a lab practical. Not curved, but the lowest midterm is dropped.
+
+The lab practical is worth 20% and almost nobody prepares for it.
+
+======================================================================
+Chunk 41  |  source: course_phys_130_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for PHYS 130 Mechanics
+
+People keep asking so: 7 hours a week, plus 3 on lab weeks. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 42  |  source: course_stat_150.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+STAT 150 Applied Statistics
+
+Transferred in last year, so take this with a grain of salt. Format is flipped: watch the recordings, class time is problem sets. Assessment: three equally weighted midterms, no final. No curve, but the lowest midterm is dropped.
+
+Expect 5 to 6 hours a week outside class.
+
+The one piece of advice: the dropped midterm makes the first one low-stakes; use it to learn the format.
+
+======================================================================
+Chunk 43  |  source: course_stat_150_exams.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+STAT 150 Applied Statistics — assessment
+
+Three equally weighted midterms, no final. No curve, but the lowest midterm is dropped.
+
+The dropped midterm makes the first one low-stakes; use it to learn the format.
+
+======================================================================
+Chunk 44  |  source: course_stat_150_workload.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Workload for STAT 150 Applied Statistics
+
+People keep asking so: 5 to 6 hours a week outside class. That's real time, not optimistic time.
+
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
+
+======================================================================
+Chunk 45  |  source: dining_halden_hall.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Halden Hall
+
+I lived here my sophomore year. Wait times: rarely more than 8 minutes, even at noon. The thing worth going for is soup rotation, and the bread is baked on site. The thing to know is that closes at 7:00pm, which catches people out.
+
+Hours are 7:30am to 7:00pm weekdays, closed Sundays. Costs one meal swipe, or $10.00 cash.
+
+======================================================================
+Chunk 46  |  source: dining_halden_hall_followup.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Re: Halden Hall
+
+Adding to what people have said about Halden Hall. The wait figure of rarely more than 8 minutes matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: closes at 7:00pm, which catches people out. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 47  |  source: dining_kestrel_commons.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Kestrel Commons
+
+I'm a junior and I've done this twice now. Wait times: 20 to 25 minutes between 12:15 and 1:00, under 5 minutes before 11:45. The thing worth going for is the stir-fry station, made to order. The thing to know is that the salad bar wilts after 1:30.
+
+Hours are 7:00am to 9:00pm weekdays, 9:00am to 8:00pm weekends. Costs one meal swipe, or $12.50 cash.
+
+======================================================================
+Chunk 48  |  source: dining_kestrel_commons_followup.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Re: Kestrel Commons
+
+Adding to what people have said about Kestrel Commons. The wait figure of 20 to 25 minutes between 12:15 and 1:00 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: the salad bar wilts after 1:30. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 49  |  source: dining_north_kitchen.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+North Kitchen
+
+Second-year here. Wait times: none, it seats 60 and is rarely more than half full. The thing worth going for is the rotating regional menu, which changes fortnightly and is ambitious. The thing to know is that closed all summer and during reading week.
+
+Hours are 11:00am to 7:00pm weekdays. Costs one meal swipe, or $13.00 cash.
+
+======================================================================
+Chunk 50  |  source: dining_north_kitchen_followup.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Re: North Kitchen
+
+Adding to what people have said about North Kitchen. The wait figure of none matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: closed all summer and during reading week. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 51  |  source: dining_pellew_dining_hall.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Pellew Dining Hall
+
+Second-year here. Wait times: 12 to 18 minutes at peak, and the peak is early — 11:45 to 12:30. The thing worth going for is a dedicated allergen-free station staffed by someone who knows the menu. The thing to know is that the furthest hall from anywhere, next to the athletics centre.
+
+Hours are 7:00am to 8:00pm daily. Costs one meal swipe, or $11.75 cash.
+
+======================================================================
+Chunk 52  |  source: dining_pellew_dining_hall_followup.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Re: Pellew Dining Hall
+
+Adding to what people have said about Pellew Dining Hall. The wait figure of 12 to 18 minutes at peak matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: the furthest hall from anywhere, next to the athletics centre. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 53  |  source: dining_the_atrium.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+The Atrium
+
+Transferred in last year, so take this with a grain of salt. Wait times: no queue, it's all grab-and-go refrigerated cases. The thing worth going for is genuinely good sandwiches restocked twice a day. The thing to know is that picked clean by 1:15 and not restocked again until the next morning.
+
+Hours are 8:00am to 6:00pm weekdays. Costs one meal swipe for a sandwich-plus-drink combination, or à la carte.
+
+======================================================================
+Chunk 54  |  source: dining_the_atrium_followup.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Re: The Atrium
+
+Adding to what people have said about The Atrium. The wait figure of no queue matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: picked clean by 1:15 and not restocked again until the next morning. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 55  |  source: dining_the_ridgeway_cafe.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+The Ridgeway Café
+
+Second-year here. Wait times: 10 to 15 minutes at 12:30, none after 2:00. The thing worth going for is the only place on campus with real espresso. The thing to know is that seating is tight; about 40 seats for a building of 900.
+
+Hours are 7:00am to 4:00pm weekdays only. Costs declining balance only, no meal swipes.
+
+======================================================================
+Chunk 56  |  source: dining_the_ridgeway_cafe_followup.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Re: The Ridgeway Café
+
+Adding to what people have said about The Ridgeway Café. The wait figure of 10 to 15 minutes at 12:30 matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: seating is tight; about 40 seats for a building of 900. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 57  |  source: dining_verrill_street_grill.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Verrill Street Grill
+
+I'm a junior and I've done this twice now. Wait times: up to 30 minutes on Friday evenings, otherwise under 10. The thing worth going for is the burger, which is the only late-night hot food on campus. The thing to know is that one register, so the queue is a single line no matter how busy.
+
+Hours are 11:00am to 1:00am daily during term. Costs declining balance, or cash after 11:00pm.
+
+======================================================================
+Chunk 58  |  source: dining_verrill_street_grill_followup.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Re: Verrill Street Grill
+
+Adding to what people have said about Verrill Street Grill. The wait figure of up to 30 minutes on Friday evenings matches what I've seen. If you're trying to eat between classes, go before 11:45 and it's a different building entirely.
+
+Also worth saying: one register, so the queue is a single line no matter how busy. Nobody tells you this at orientation.
+
+======================================================================
+Chunk 59  |  source: health_center.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+The health centre
+
+Walk-in hours are 8am to 11am; everything after that is by appointment and appointments run about a week out. If something is urgent, go at 8am and wait rather than booking.
+
+Counselling is separate, in the same building, and has its own intake process with a shorter wait than people expect — usually three or four days for a first session.
+
+======================================================================
+Chunk 60  |  source: housing_aldridge_hall.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Aldridge Hall — what it's actually like
+
+I lived here my sophomore year. Built 1968, renovated 2019. Rooms are doubles with a shared bathroom per floor.
+
+The good: closest building to the science quad, four minutes to a 9am lab.
+
+The bad: the elevator is out roughly one week per semester.
+
+Laundry costs $1.75 wash, $1.50 dry, card only. On noise: quiet floors on 3 and 4 are genuinely enforced.
+
+======================================================================
+Chunk 61  |  source: housing_aldridge_hall_laundry.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Laundry in Aldridge Hall
+
+Machines take $1.75 wash, $1.50 dry, card only. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+======================================================================
+Chunk 62  |  source: housing_aldridge_hall_noise.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Noise levels in Aldridge Hall
+
+Asked about this a lot so writing it down. Quiet floors on 3 and 4 are genuinely enforced.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+======================================================================
+Chunk 63  |  source: housing_calder_annexe.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Calder Annexe — what it's actually like
+
+Second-year here. Built 2003. Rooms are mostly singles, some doubles, in clusters of six around a lounge.
+
+The good: the cluster lounges mean you meet people without having to try.
+
+The bad: the singles are small — about 90 square feet — and the desks are fixed.
+
+Laundry costs $2.00 wash, $1.75 dry, app-based. On noise: depends entirely on your cluster; there's no building-wide pattern.
+
+======================================================================
+Chunk 64  |  source: housing_calder_annexe_laundry.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Laundry in Calder Annexe
+
+Machines take $2.00 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+======================================================================
+Chunk 65  |  source: housing_calder_annexe_noise.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Noise levels in Calder Annexe
+
+Asked about this a lot so writing it down. Depends entirely on your cluster; there's no building-wide pattern.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+======================================================================
+Chunk 66  |  source: housing_fenwick_court.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Fenwick Court — what it's actually like
+
+Just finished a year in this building. Built 2015. Rooms are suites of four with a shared kitchenette.
+
+The good: in-suite bathrooms, and the kitchenette means you can skip a meal plan tier.
+
+The bad: the furthest housing from central campus, about 18 minutes on foot.
+
+Laundry costs $2.00 wash, $1.75 dry, app-based. On noise: thin walls between suites; the kitchenettes carry sound.
+
+======================================================================
+Chunk 67  |  source: housing_fenwick_court_laundry.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Laundry in Fenwick Court
+
+Machines take $2.00 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+======================================================================
+Chunk 68  |  source: housing_fenwick_court_noise.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Noise levels in Fenwick Court
+
+Asked about this a lot so writing it down. Thin walls between suites; the kitchenettes carry sound.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+======================================================================
+Chunk 69  |  source: housing_innisfree_hall.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Innisfree Hall — what it's actually like
+
+Transferred in last year, so take this with a grain of salt. Built 1991, renovated 2022. Rooms are doubles arranged as pairs sharing one bathroom between two rooms.
+
+The good: the shared-bathroom-between-two-rooms arrangement is the best compromise on campus.
+
+The bad: no air conditioning, which matters for the first three weeks of September.
+
+Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building is L-shaped and the short wing is much quieter.
+
+======================================================================
+Chunk 70  |  source: housing_innisfree_hall_laundry.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Laundry in Innisfree Hall
+
+Machines take $1.75 wash, $1.75 dry, app-based. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+======================================================================
+Chunk 71  |  source: housing_innisfree_hall_noise.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Noise levels in Innisfree Hall
+
+Asked about this a lot so writing it down. Moderate; the building is l-shaped and the short wing is much quieter.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+======================================================================
+Chunk 72  |  source: housing_morrow_house.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Morrow House — what it's actually like
+
+Just finished a year in this building. Built 1954, partially renovated 2008. Rooms are singles and doubles, hall bathrooms.
+
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
+
+The bad: known damp problem on the ground floor; two rooms were taken offline in 2024.
+
+Laundry costs $1.50 wash, $1.25 dry, coin or card. On noise: loud until about 1am on weekends, no enforced quiet hours.
+
+======================================================================
+Chunk 73  |  source: housing_morrow_house_laundry.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Laundry in Morrow House
+
+Machines take $1.50 wash, $1.25 dry, coin or card. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+======================================================================
+Chunk 74  |  source: housing_morrow_house_noise.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Noise levels in Morrow House
+
+Asked about this a lot so writing it down. Loud until about 1am on weekends, no enforced quiet hours.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+======================================================================
+Chunk 75  |  source: housing_old_brewhouse.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Old Brewhouse — what it's actually like
+
+Took this last spring. Built 1902 as a brewery, converted to housing in 1998. Rooms are doubles and triples with unusual floor plans, no two alike.
+
+The good: the most characterful building on campus and people get attached to it.
+
+The bad: the heating is uneven — some rooms run hot all winter and can't be adjusted.
+
+Laundry costs $1.50 wash, $1.50 dry, coin only, and the machines are old. On noise: sound carries strangely because of the original brick; a room two floors up can be louder than next door.
+
+======================================================================
+Chunk 76  |  source: housing_old_brewhouse_laundry.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Laundry in Old Brewhouse
+
+Machines take $1.50 wash, $1.50 dry, coin only, and the machines are old. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+======================================================================
+Chunk 77  |  source: housing_old_brewhouse_noise.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Noise levels in Old Brewhouse
+
+Asked about this a lot so writing it down. Sound carries strangely because of the original brick; a room two floors up can be louder than next door.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+======================================================================
+Chunk 78  |  source: housing_tamsin_court.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Tamsin Court — what it's actually like
+
+I lived here my sophomore year. Built 2021. Rooms are studio apartments with private kitchen and bathroom.
+
+The good: the most independent housing on campus, and the only option with a full kitchen.
+
+The bad: the most expensive tier by a wide margin, and isolating if you're new.
+
+Laundry costs in-unit washer-dryer. On noise: quiet, structurally — concrete floors between units.
+
+======================================================================
+Chunk 79  |  source: housing_tamsin_court_laundry.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Laundry in Tamsin Court
+
+Machines take in-unit washer-dryer. There are eight washers and six dryers for the building, which is the wrong ratio and means the dryers back up on Sunday evenings.
+
+Best time to do laundry here is Tuesday or Wednesday morning. Sunday after 6pm you will wait.
+
+======================================================================
+Chunk 80  |  source: housing_tamsin_court_noise.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Noise levels in Tamsin Court
+
+Asked about this a lot so writing it down. Quiet, structurally — concrete floors between units.
+
+If you're someone who needs quiet to work, the library is open until 2am during term and that's what most people in this building end up doing.
+
+======================================================================
+Chunk 81  |  source: money_jobs.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On-campus work
+
+Library and dining jobs post in the first week of each semester and go fast. Pay is the same across departments — the difference is whether you can study during the shift. Library desk: usually yes. Dining: no.
+
+Maximum is 20 hours a week during term. Most people find 10 to 12 is the point where it stops affecting coursework.
+
+======================================================================
+Chunk 82  |  source: money_textbooks.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Textbooks without paying full price
+
+The library holds one copy of most required texts on two-hour reserve. For courses where the text is used constantly that isn't enough, but for the reading-light courses it's genuinely all you need.
+
+The campus store price-matches, which is not advertised anywhere and you have to ask at the counter with the other listing on your phone.
+
+======================================================================
+Chunk 83  |  source: orientation_what_matters.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+What actually matters in orientation week
+
+Most of it is optional and framed as though it isn't. The two sessions worth going to are the one where you meet your academic adviser and the library walkthrough, because both save you time later.
+
+The club fair is genuinely useful but goes on for four hours and you only need the first forty minutes.
+
+======================================================================
+Chunk 84  |  source: study_group_rooms.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Booking a group study room
+
+Rooms book two weeks ahead through the library site, in two-hour blocks, maximum two blocks per person per week. The limit is per person, so a group of four can chain together eight hours if they coordinate.
+
+Rooms 210 and 211 have whiteboards that actually erase. The others don't and no amount of scrubbing helps.
+
+======================================================================
+Chunk 85  |  source: study_library_hours.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Library hours and where to actually sit
+
+Open until 2am during term, until 10pm during reading week, which is backwards and catches everyone out every single year.
+
+Third floor is silent and enforced. Second floor is quiet in theory. The basement has the only outlets at every seat and is therefore full from about 10am.
+
+======================================================================
+Chunk 86  |  source: transit_shuttle.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+The campus shuttle
+
+Runs a loop every 20 minutes from 7am to 11pm on weekdays and every 40 minutes on weekends. The published timetable is optimistic by about five minutes in the morning and accurate the rest of the day.
+
+It's free with a student ID. The stop outside Fenwick Court is the one that gets skipped when the driver is behind, which is worth knowing if you live there.
+
+======================================================================
+Chunk 87  |  source: transit_walking.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+Walking times across campus
+
+Rough numbers, measured rather than guessed. Aldridge Hall to the science quad: 4 minutes. Fenwick Court to central campus: 18 minutes. Morrow House to Kestrel Commons: 7 minutes. Library to Ridgeway Café: 3 minutes.
+
+Add four minutes in winter. The path past the pond genuinely ices over and people take the long way round.
+
+======================================================================
+Chunk 88  |  source: winter_gear.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+What winter is actually like here
+
+Cold from mid-November to early March, with about three weeks in January where it stays below freezing all day. The buildings are heated to the point of being too warm, so layers matter more than a heavy coat.
+
+The paths get cleared by 7am on weekdays and considerably later on weekends.
+
+For each one, ask: could someone answer a question using only this,
+without reading what came before or after?

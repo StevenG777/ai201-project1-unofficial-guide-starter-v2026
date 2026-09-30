@@ -31,8 +31,9 @@ def cmd_corpora(args):
 
 
 def cmd_index(args):
+    import chunker
     from ingest import load_documents, describe as describe_docs
-    from chunker import split_documents, describe as describe_chunks
+    from chunker import describe as describe_chunks
     from store import build_index
 
     corpus = args.corpus or config.CORPUS
@@ -43,6 +44,7 @@ def cmd_index(args):
     documents = load_documents(corpus)
     print(f"  loaded   {describe_docs(documents)}")
 
+    split_documents = getattr(chunker, args.chunker)
     chunks = split_documents(documents)
     print(f"  chunked  {describe_chunks(chunks)}")
 
@@ -100,9 +102,10 @@ def _chunks_at(chunks, spec):
 
 def cmd_chunks(args):
     """Milestone 3. Print chunks so you can read them and paste them."""
+    import chunker
     from ingest import load_documents
-    from chunker import split_documents
 
+    split_documents = getattr(chunker, args.chunker)
     chunks = split_documents(load_documents(args.corpus or config.CORPUS))
 
     if args.from_doc:
@@ -330,6 +333,12 @@ def build_parser():
         "--variant",
         default="default",
         help="index variant, for holding two chunkings at once (unit 2)",
+    )
+    parser.add_argument(
+        "--chunker",
+        default="split_documents",
+        choices=["split_documents", "fallback_split", "semantic_split_documents"],
+        help="which chunker.py function to use (Milestone 4 improvement)",
     )
 
     sub = parser.add_subparsers(dest="command", required=True)

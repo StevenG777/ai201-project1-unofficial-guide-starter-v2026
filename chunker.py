@@ -130,6 +130,85 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
     return chunks
 
 
+def _cosine(a: list[float], b: list[float]) -> float:
+    dot = sum(x * y for x, y in zip(a, b))
+    norm_a = sum(x * x for x in a) ** 0.5
+    norm_b = sum(y * y for y in b) ** 0.5
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+    return dot / (norm_a * norm_b)
+
+
+def semantic_split_documents(
+    documents: list[Document],
+    threshold: float | None = None,
+) -> list[Chunk]:
+    """
+    Milestone 4 improvement — a second chunking strategy, kept alongside
+    `split_documents` rather than replacing it, so before/after can be
+    compared.
+
+    Targets the criterion 4 diagnosis: `split_documents` assumes one file is
+    always one topic and never checks for a boundary inside a file. That
+    assumption holds for 87 of 88 campus_life files but breaks for
+    `health_center.txt`, which covers two unrelated topics in one file.
+
+    This splits each document into paragraphs (blank-line separated), then
+    merges adjacent paragraphs into one chunk as long as they stay on topic,
+    measured by embedding similarity, and starts a new chunk when a paragraph
+    drops below `threshold`. A file whose paragraphs all discuss one topic
+    (the common case) comes out as one chunk, same as before. A file that
+    shifts to an unrelated topic partway through splits into more than one.
+
+    The title line is glued to the first real paragraph before any
+    similarity check runs — a title alone ("The health centre") carries
+    almost no topic signal to compare against, so comparing from paragraph 1
+    onward would risk splitting the title off from its own topic.
+    """
+    from store import embed
+
+    threshold = config.CHUNK_SIMILARITY_THRESHOLD if threshold is None else threshold
+
+    chunks: list[Chunk] = []
+    for doc in documents:
+        paragraphs = [p.strip() for p in doc.text.split("\n\n") if p.strip()]
+
+        if len(paragraphs) <= 2:
+            groups = ["\n\n".join(paragraphs)] if paragraphs else []
+        else:
+            seed = "\n\n".join(paragraphs[:2])
+            rest = paragraphs[2:]
+            vectors = embed([seed] + rest)
+
+            groups = [[seed]]
+            group_vectors = [vectors[0]]
+            for para, vec in zip(rest, vectors[1:]):
+                centroid = [
+                    sum(v[i] for v in group_vectors) / len(group_vectors)
+                    for i in range(len(vec))
+                ]
+                if _cosine(centroid, vec) >= threshold:
+                    groups[-1].append(para)
+                    group_vectors.append(vec)
+                else:
+                    groups.append([para])
+                    group_vectors = [vec]
+            groups = ["\n\n".join(g) for g in groups]
+
+        for index, text in enumerate(groups):
+            if text:
+                chunks.append(
+                    Chunk(
+                        text=text,
+                        source=doc.source,
+                        index=index,
+                        produced_by="chunker.py::semantic_split_documents",
+                    )
+                )
+
+    return chunks
+
+
 def describe(chunks: list[Chunk]) -> str:
     """A one-line summary, printed after indexing."""
     if not chunks:

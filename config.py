@@ -30,6 +30,21 @@ CORPUS = os.getenv("AI201_CORPUS", "campus_life")
 CHUNK_SIZE = 800        # characters per chunk
 CHUNK_OVERLAP = 120     # characters shared between neighbouring chunks
 
+# Milestone 4 improvement: chunker.py::semantic_split_documents merges
+# adjacent paragraphs into one chunk while their embeddings stay this
+# similar, and starts a new chunk when a paragraph drops below it — the
+# check for a topic boundary within a file that split_documents doesn't do.
+#
+# Calibration finding, not a clean pick like THRESHOLD above: there is no
+# value that separates "real topic shift" from "same topic, next paragraph"
+# for this corpus. health_center.txt (the one real two-topic file) only
+# splits at >= 0.35, but at 0.35 more than 50 other, genuinely single-topic
+# files split too (course_biol_160.txt, course_stat_150.txt, etc.) — same
+# recall, terrible precision. Below 0.35, health_center.txt doesn't split at
+# all. Set to 0.35 anyway so the improvement is measurable end to end; see
+# README "The Improvement" for the full writeup of why this doesn't work.
+CHUNK_SIMILARITY_THRESHOLD = 0.35
+
 
 # ─── Retrieval (Milestone 4) ─────────────────────────────────────────────────
 
